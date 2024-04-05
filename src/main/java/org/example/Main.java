@@ -3,14 +3,10 @@ package org.example;
 import org.jblas.DoubleMatrix;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        DoubleMatrix picture = new DoubleMatrix(PictureProcessor.process("src/train/000003-num1.png"));
+        DoubleMatrix picture = new DoubleMatrix(PictureProcessor.process("src/000000-num5.png"));
         SigmoidNetwork network = (SigmoidNetwork) deserialize();
         System.out.println(evaluate( network.feedForward(picture)));
     }
@@ -49,5 +45,7 @@ public class Main {
         }
         System.out.println("Serialized");
     }
+
+
 
 }

@@ -3,10 +3,8 @@ package org.example;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.jblas.DoubleMatrix;
 import org.jblas.util.Random;
@@ -84,8 +82,12 @@ public class SigmoidNetwork implements Serializable {
         for (int j = 0; j < epochs; j++) {
             Collections.shuffle(trainingData);
             List<List<double[][]>> miniBatches = new ArrayList<>();
+//            for (int k = 0; k < n; k += miniBatchSize) {
+//                miniBatches.add(trainingData.subList(k, k + miniBatchSize));
+//            }
             for (int k = 0; k < n; k += miniBatchSize) {
-                miniBatches.add(trainingData.subList(k, k + miniBatchSize));
+                int remainingSize = Math.min(n - k, miniBatchSize);
+                miniBatches.add(trainingData.subList(k, k + remainingSize));
             }
 
             for (List<double[][]> miniBatch : miniBatches) {
